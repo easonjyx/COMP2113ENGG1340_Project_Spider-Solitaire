@@ -1,0 +1,8 @@
+h		help
+q		quit
+u		undo
+r		restart
+m		mode change
+3 5 2	move 3 cards from col5 to col2
+d		deal
+
