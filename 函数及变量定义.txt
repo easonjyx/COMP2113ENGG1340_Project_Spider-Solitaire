@@ -1,0 +1,20 @@
+#ifndef GRADEBOOK_H
+#define GRADEBOOK_H
+#include <cstring>
+using namespace std;
+
+struct card{
+	int rank;//1:A  11:J  12:Q  13:K
+	int suit;//1:SpadeºÚÌÒ  2:HeartºìÐÄ  3:Diamond·½¿é  4:ClubÃ·»¨
+	bool up;//0:down  1:up
+};
+
+struct rec{
+	card cards[10][104];
+	rec *next;
+	rec(card src[10][104], rec *nxt=0):next(nxt) {memcpy(cards, src, sizeof(cards));}
+};
+
+extern card cards[10][104];
+
+#endif
