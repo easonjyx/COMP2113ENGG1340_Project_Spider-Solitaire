@@ -15,6 +15,6 @@ struct rec{
 	rec(card src[10][104], rec *nxt=0):next(nxt) {memcpy(cards, src, sizeof(cards));}
 };
 
-extern card cards;
+extern card cards[10][104];
 
 #endif
