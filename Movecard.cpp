@@ -9,7 +9,17 @@ bool Movecard(int initcol, int tarcol, int num, rec* head) {
         return false;
     }
     int initLast = GetLastIndex(initcol, head):
-    int moveStart = initLast
+    int moveStart = initLast - num + 1;
+    int tarLast = GetLastIndex(intcol, head);
+    int tarPos = tarLast + 1;
 
-void savehistory() {
+    for (int i = 0; i < num; i++) {
+        head->cards[tarcol][tarPos + i] = head->cards[initcol][moveStart + i]
+        head->cards[initcol][moveStart + i].setEmpty();
+    }
+    std::cout << "successfully moved" << std::endl;
+    return true;
+}
+
+
 
