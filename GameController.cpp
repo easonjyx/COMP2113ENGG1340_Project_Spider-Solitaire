@@ -10,6 +10,7 @@
 
 card operation_cards[10][104];
 bool g_sameSuitOnly = true;
+int g_currentDifficulty;
 
 static std::string cardToString(const card& c) {
     if (!c.up) return "[??]";
@@ -74,8 +75,10 @@ static void showHelp() {
     std::cout << "=============================\n";
 }
 
-void runGame(int difficultySuits) {
-    initNewGame(difficultySuits);
+void runGame(int difficultySuits, bool isLoaded) {
+    g_currentDifficulty = difficultySuits;
+    if (!isLoaded) {
+        initNewGame(difficultySuits);
     rec* history = nullptr;
     save(history);
 
@@ -157,7 +160,7 @@ void runGame(int difficultySuits) {
                 checkAndRemoveCompleteSequences();
             }
         } else if (line.length() > 2 && line[0] == 's' && line[1] == ' ') {
-            // 保存游戏 s filename
+            // save game s filename
             std::string fname = line.substr(2);
             if (saveGame(fname.c_str()))
                 std::cout << "Game saved to " << fname << "\n";
@@ -171,6 +174,7 @@ void runGame(int difficultySuits) {
                     history = history->next;
                     delete tmp;
                 }
+                difficultySuits = g_currentDifficulty;
                 save(history);
                 std::cout << "Game loaded from " << fname << "\n";
             } else {
