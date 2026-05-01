@@ -1,4 +1,5 @@
 #include "GameHistory.h"
+#include "DeckManager.h"
 #include <iostream>
 #include <cstring>
 
@@ -24,7 +25,10 @@ void undo(rec* &head){
 	}
 
 	// Return to the previous one
-	std::memcpy(operation_cards, head->next->cards, sizeof(operation_cards));
+	memcpy(operation_cards, head->next->cards, sizeof(operation_cards));
+    memcpy(remainingDeck, head->next->remainingDeck, sizeof(remainingDeck));
+    remainingCount = head->next->remainingCount;
+    completedSets = head->next->completedSets;
 	rec* temp = head;
 	head = head->next;
 	delete temp;
