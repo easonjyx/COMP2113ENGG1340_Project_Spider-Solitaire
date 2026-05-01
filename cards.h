@@ -7,7 +7,7 @@ struct card{
 	int suit;// 1:SpadeºÚÌÒ  2:HeartºìÐÄ  3:Diamond·½¿é  4:ClubÃ·»¨
 	bool up;// 0:down  1:up
 
-	card() : rank(0), suit(0), up(false）{}// initialize as empty cards
+	card() : rank(0), suit(0), up(false) {}// initialize as empty cards
 	bool isEmpty(){
 		return (rank == 0 && suit == 0 && up == false);
 	}
