@@ -1,6 +1,7 @@
 #include "GameController.h"
 #include "Print_introduction.cpp"
 #include <iostream>
+#include "SaveLoad.h"
 
 void printRules() {
     std::cout << R"(
@@ -27,7 +28,8 @@ int main() {
         std::cout << "\n========== MAIN MENU ==========\n";
         std::cout << "1. New Game\n";
         std::cout << "2. Rules\n";
-        std::cout << "3. Exit\n";
+        std::cout << "3. Load Game\n";
+        std::cout << "4. Exit\n";
         std::cout << "Choice: ";
         int choice;
         std::cin >> choice;
@@ -46,7 +48,17 @@ int main() {
             runGame(suits);
         } else if (choice == 2) {
             printRules();
-        } else if (choice == 3) {
+        }else if(choice==3){
+            std::cout << "Enter save file name: ";
+            std::string fname;
+            std::getline(std::cin, fname);
+            if (loadGame(fname.c_str())) {
+                std::cout << "Game loaded. Starting...\n";
+                runGame(g_currentDifficulty, true);   // 以加载模式启动
+            } else {
+                std::cout << "Load failed. Returning to main menu.\n";
+                }
+        }else if (choice == 4) {
             std::cout << "Thanks for playing!\n";
             break;
         } else {
