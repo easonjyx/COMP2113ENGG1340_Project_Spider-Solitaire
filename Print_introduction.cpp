@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "Print_introduction.h"
 
 void printIntroduction() {
     std::cout << R"(
@@ -42,6 +43,7 @@ void printIntroduction() {
 ║                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════╝
 )";
+    std::cout << "Please type 'yes' to begin: ";
     std::string answer;
     while (true) {
         std::cout << "> ";
