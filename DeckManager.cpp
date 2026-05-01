@@ -89,7 +89,7 @@ void dealNextRow() {
         std::cout << "No more cards to deal!\n";
         return;
     }
-    rec* dummyHead = nullptr;
+    //rec* dummyHead = nullptr;
 
     for (int col = 0; col < 10; ++col){
         int lastIdx = -1;
