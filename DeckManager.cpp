@@ -2,12 +2,13 @@
 #include "GameHistory.h"
 #include <cstdlib>
 #include <ctime>
+#include <cstring>
 #include <algorithm>
 #include <iostream>
 
-static int remainingDeck[104];
-static int remainingCount = 0;
-static int completedSets = 0;
+int remainingDeck[104];
+int remainingCount = 0;
+int completedSets = 0;
 
 
 static void clearBoard() {
