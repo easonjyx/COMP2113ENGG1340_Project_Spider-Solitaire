@@ -21,8 +21,15 @@ struct card{
 
 struct rec{
 	card cards[10][104];
+    int remainingDeck[104];
+    int remainingCount;
+    int completedSets;
 	rec *next;
-	rec(card src[10][104], rec *nxt=0):next(nxt) {memcpy(cards, src, sizeof(cards));}
+
+    rec(card src[10][104], int remDeck[104], int remCount, int compSets, rec *nxt = nullptr)
+        : next(nxt), remainingCount(remCount), completedSets(compSets) {
+        memcpy(cards, src, sizeof(cards));
+        memcpy(remainingDeck, remDeck, sizeof(remainingDeck));
 };
 
 extern card operation_cards[10][104];
