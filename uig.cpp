@@ -53,7 +53,8 @@ void gotoxy(int x, int y) {
     coord.X = x; coord.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 #else
-    printf("\033[%d;%dH", y + 1, x + 1);
+    
+    cout << "\033[" << (y+1) << ";" << (x+1) << "H";
 #endif
 }
 
@@ -93,7 +94,7 @@ string cardToString(const Card& c, bool isSelected = false) {
     string selectMark = isSelected ? ">" : " ";
     
     if (!c.faceUp) {
-        colorCode = "\033[90m"; // 灰色牌背
+        return selectMark + "\033[90m[###]\033[0m"; // 黑色牌背
     } else if (c.suit == 1 || c.suit == 3) {
         colorCode = "\033[31m"; // 红色 (红心/方片)
     } else {
@@ -121,30 +122,47 @@ string cardToString(const Card& c, bool isSelected = false) {
 void initTable() {
     piles.clear();
     
-    // 发牌区 (Stock)
+    // 创建 2 副完整的牌（104 张）
+    vector<Card> deck;
+    for (int copies = 0; copies < 2; ++copies) {
+        for (int suit = 0; suit < 4; ++suit) {
+            for (int rank = 1; rank <= 13; ++rank) {
+                deck.push_back({suit, rank, false});
+            }
+        }
+    }
+    
+    // 洗牌
+    random_shuffle(deck.begin(), deck.end());
+    
+    int deckIndex = 0;
+    
+    // piles[0] = 库存牌堆（发牌区）
+    // 前 54 张分配给 10 列，剩余 50 张在库存中
     Pile stock;
     stock.x = 2; stock.y = 2;
     stock.isStock = true;
-    for (int i = 0; i < 5; ++i) stock.cards.push_back({0, 1, false});
+    for (int i = 0; i < 50; ++i) {
+        stock.cards.push_back(deck[deckIndex++]);
+    }
     piles.push_back(stock);
     
-    // 10 列牌堆
+    // piles[1~10] = 10 列牌堆
+    // 前 4 列各 6 张，后 6 列各 5 张（共 54 张）
     for (int col = 0; col < 10; ++col) {
         Pile p;
-        p.x = 2 + col * 7; // 增加间距适配 UI
+        p.x = 2 + col * 7;
         p.y = 5;
         p.isStock = false;
-        for (int i = 0; i < col + 3; ++i) {
-            bool face = (i == col + 2);
-            
-            // 根据难度的花色数量分配花色
-            int currentSuit;
-            if (numSuits == 1) currentSuit = 0; // 全黑桃
-            else if (numSuits == 2) currentSuit = i % 2; // 黑红交替
-            else currentSuit = i % 4; // 四色交替
-            
-            p.cards.push_back({currentSuit, (i % 13) + 1, face});
+        
+        int cardsPerPile = (col < 4) ? 6 : 5;
+        
+        for (int i = 0; i < cardsPerPile; ++i) {
+            Card c = deck[deckIndex++];
+            c.faceUp = (i == cardsPerPile - 1); // 只有最后一张翻开
+            p.cards.push_back(c);
         }
+        
         piles.push_back(p);
     }
 }
