@@ -77,9 +77,10 @@ static void showHelp() {
 
 void runGame(int difficultySuits, bool isLoaded) {
     g_currentDifficulty = difficultySuits;
+    rec* history = nullptr;
     if (!isLoaded) {
         initNewGame(difficultySuits);
-    rec* history = nullptr;
+    }
     save(history);
 
     while (true) {
@@ -110,7 +111,7 @@ void runGame(int difficultySuits, bool isLoaded) {
             }
 
             if (choice == 1) {
-                runGame(difficultySuits);
+                runGame(g_currentDifficulty);
                 return;
             } else if (choice == 2) {
                 return;
@@ -146,7 +147,7 @@ void runGame(int difficultySuits, bool isLoaded) {
                 history = history->next;
                 delete tmp;
             }
-            initNewGame(difficultySuits);
+            initNewGame(g_currentDifficulty);
             save(history);
         } else if (line == "m") {
             g_sameSuitOnly = !g_sameSuitOnly;
