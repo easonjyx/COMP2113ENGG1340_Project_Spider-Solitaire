@@ -1,7 +1,14 @@
 #include "MoveRule.h"
 #include <iostream>
 
-int GetLastIndex(int col, rec* head){
+extern card operation_cards[10][104];
+extern bool g_sameSuitOnly;
+
+int GetLastIndex(int col){
+	int idx = 0;
+    if (operation_cards[col][0].isEmpty()) return -1;
+    while (idx + 1 < 104 && !operation_cards[col][idx + 1].isEmpty()) idx++;
+    return idx;
 	/*
 	 * Function: Find the last card in a column
 	 * Parameters:
@@ -9,12 +16,6 @@ int GetLastIndex(int col, rec* head){
 	 *   *head - pointer
 	 * Return: The index of the last card (starting from 0)
 	 */
-	int index = 0;
-	if (head->cards[col][0].isEmpty())
-		return -1;
-	while (index+1 < 104 && !head->cards[col][index+1].isEmpty())
-		index++;
-	return index;
 }
 
 bool isValidMove(int initcol, int tarcol, int num, rec* head){
@@ -29,26 +30,25 @@ bool isValidMove(int initcol, int tarcol, int num, rec* head){
 	 */
 
 	// Check for the input column index is valid
-	if (initcol < 0 || initcol > 9 || tarcol < 0 || tarcol > 9 || initcol == tarcol){
-		return false;
-	}
+    if (initcol < 0 || initcol > 9 || tarcol < 0 || tarcol > 9 || initcol == tarcol)
+        return false;
 
-	// Check for the initial col has more than num cards
-	int initidx = GetLastIndex(initcol, head);
-	if (initidx + 1 < num)
-		return false;
+    int initLast = GetLastIndex(initcol);
+    if (initLast + 1 < num) return false;
 	
-	// Check for the moved cards are the same suit
-	int suit = head->cards[initcol][initidx].suit;
-	int rank = head->cards[initcol][initidx].rank;
-	for (int i = 1; i < num; i++){
-		if (head->cards[initcol][initidx-i].suit != suit || head->cards[initcol][initidx-i].rank != rank - i)
-			return false;
-	}
+    int suit = operation_cards[initcol][initLast].suit;
+    int rank = operation_cards[initcol][initLast].rank;
+    for (int i = 1; i < num; ++i) {
+        if (operation_cards[initcol][initLast - i].suit != suit ||
+            operation_cards[initcol][initLast - i].rank != rank - i)
+            return false;
+    }
+    int tarLast = GetLastIndex(tarcol);
+    if (tarLast == -1) return true;
 
-	// Check for valid move
-	int taridx = GetLastIndex(tarcol, head);
-	if (taridx == -1)
-		return true;
-	return (head->cards[tarcol][taridx].rank == rank + 1);
+    const card& tarCard = operation_cards[tarcol][tarLast];
+    if (g_sameSuitOnly)
+        return (tarCard.rank == rank + 1 && tarCard.suit == suit);
+    else
+        return (tarCard.rank == rank + 1);
 }
