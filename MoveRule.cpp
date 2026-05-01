@@ -18,7 +18,7 @@ int GetLastIndex(int col){
 	 */
 }
 
-bool isValidMove(int initcol, int tarcol, int num, rec* head){
+bool isValidMove(int initcol, int tarcol, int num){
 	/*
 	 * Function: Move multiple cards at once
 	 * Parameters:
@@ -40,9 +40,12 @@ bool isValidMove(int initcol, int tarcol, int num, rec* head){
     int rank = operation_cards[initcol][initLast].rank;
     for (int i = 1; i < num; ++i) {
         if (operation_cards[initcol][initLast - i].suit != suit ||
-            operation_cards[initcol][initLast - i].rank != rank - i)
+            operation_cards[initcol][initLast - i].rank != rank - i ||
+			!operation_cards[initcol][initLast - i].up)
             return false;
     }
+	if (!operation_cards[initcol][initLast].up) return false;
+	
     int tarLast = GetLastIndex(tarcol);
     if (tarLast == -1) return true;
 
