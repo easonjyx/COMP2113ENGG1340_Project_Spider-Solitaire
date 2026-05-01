@@ -2,6 +2,6 @@
 #define GAMECONTROLLER_H
 #include "cards.h"
 //(difficulty:1/2/4）
-void runGame(int difficultySuits);
+void runGame(int difficultySuits,bool isLoaded= false);
 
 #endif
