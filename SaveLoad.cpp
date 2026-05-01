@@ -6,6 +6,7 @@
 extern int remainingDeck[104];
 extern int remainingCount;
 extern int completedSets;
+extern int g_currentDifficulty;
 
 struct SaveData {
     card board[10][104];
@@ -21,6 +22,7 @@ bool saveGame(const char* filename) {
     memcpy(data.remainingDeck, ::remainingDeck, sizeof(::remainingDeck));
     data.remainingCount = ::remainingCount;
     data.completedSets = ::completedSets;
+    data.difficulty = g_currentDifficulty; 
     std::ofstream ofs(filename, std::ios::binary);
     if (!ofs) return false;
     ofs.write(reinterpret_cast<char*>(&data), sizeof(data));
@@ -37,5 +39,6 @@ bool loadGame(const char* filename) {
     memcpy(::remainingDeck, data.remainingDeck, sizeof(::remainingDeck));
     ::remainingCount = data.remainingCount;
     ::completedSets = data.completedSets;
+    g_currentDifficulty = data.difficulty;
     return true;
 }
