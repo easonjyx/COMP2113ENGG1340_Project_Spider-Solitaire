@@ -1,12 +1,13 @@
 #include "SaveLoad.h"
 #include "DeckManager.h"
+#include "GameController.h" 
 #include <fstream>
 #include <iostream>
 
-extern int remainingDeck[104];
+/*extern int remainingDeck[104];
 extern int remainingCount;
 extern int completedSets;
-extern int g_currentDifficulty;
+extern int g_currentDifficulty;*/
 
 struct SaveData {
     card board[10][104];
