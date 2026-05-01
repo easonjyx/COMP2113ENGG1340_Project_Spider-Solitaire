@@ -8,7 +8,7 @@ void save(rec* &head){
 	 * Function: Copy the save the current step
 	 * Parameter: head of the pointer
 	 */
-	rec* new_node = new rec(operation_cards, head);
+	rec* new_node = new rec(operation_cards, remainingDeck, remainingCount, completedSets, head);
 	head = new_node;
 }
 
