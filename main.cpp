@@ -1,5 +1,5 @@
 #include "GameController.h"
-#include "Print_introduction.cpp"
+#include "Print_introduction.h"
 #include <iostream>
 #include "SaveLoad.h"
 
