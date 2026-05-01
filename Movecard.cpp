@@ -6,8 +6,8 @@ using namespace std;
 
 extern card operation_cards[10][104];
 bool Movecard(int initcol, int tarcol, int num) {
-    if(!isValidMove(initcol, tarcol, num, head)) {
-        cout << "Unvalid Move" << endl;
+    if(!isValidMove(initcol, tarcol, num)) {
+        cout << "Invalid Move" << endl;
         return false;
     }
     int initLast = GetLastIndex(initcol);
