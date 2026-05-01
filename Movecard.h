@@ -4,6 +4,6 @@
 #include "cards.h"
 #include "MoveRule.h"
 
-bool Movecard(int initcol, int tarcol, int num, rec* head);
+bool Movecard(int initcol, int tarcol, int num);
 
 #endif
