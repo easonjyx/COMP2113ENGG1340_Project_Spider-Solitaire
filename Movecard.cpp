@@ -3,20 +3,26 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-bool Movecard(int initcol, int tarcol, int num, rec* head) {
+
+extern card operation_cards[10][104];
+bool Movecard(int initcol, int tarcol, int num) {
     if(!isValidMove(initcol, tarcol, num, head)) {
-        std::cout << "Unvalid Move" << std::endl;
+        cout << "Unvalid Move" << endl;
         return false;
     }
-    int initLast = GetLastIndex(initcol, head);
+    int initLast = GetLastIndex(initcol);
     int moveStart = initLast - num + 1;
-    int tarLast = GetLastIndex(tarcol, head);
+    int tarLast = GetLastIndex(tarcol);
     int tarPos = tarLast + 1;
 
     for (int i = 0; i < num; i++) {
-        head->cards[tarcol][tarPos + i] = head->cards[initcol][moveStart + i];
-        head->cards[initcol][moveStart + i].setEmpty();
+        operation_cards[tarcol][tarPos + i] = operation_cards[initcol][moveStart + i];
+        operation_cards[initcol][moveStart + i].setEmpty();
     }
+    int newTop = GetLastIndex(initcol);
+    if (newTop >= 0 && !operation_cards[initcol][newTop].up)
+        operation_cards[initcol][newTop].up = true;
+
     std::cout << "successfully moved" << std::endl;
     return true;
 }
