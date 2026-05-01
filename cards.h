@@ -30,6 +30,7 @@ struct rec{
         : next(nxt), remainingCount(remCount), completedSets(compSets) {
         memcpy(cards, src, sizeof(cards));
         memcpy(remainingDeck, remDeck, sizeof(remainingDeck));
+	}
 };
 
 extern card operation_cards[10][104];
