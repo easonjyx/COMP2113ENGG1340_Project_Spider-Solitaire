@@ -3,7 +3,7 @@
 
 #include "cards.h"
 
-int GetLastIndex(int col, rec* head);
-bool isValidMove(int initcol, int tarcol, int num, rec* head);
+int GetLastIndex(int col);
+bool isValidMove(int initcol, int tarcol, int num);
 
 #endif
