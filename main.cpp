@@ -23,15 +23,15 @@ bool readInt(int& out) {
 void printRules() {
     std::cout << R"(
 ╔═══════════════════════════════════════════════════════════════════╗
-║                      SPIDER SOLITAIRE RULES                        ║
+║                      SPIDER SOLITAIRE RULES                       ║
 ╠═══════════════════════════════════════════════════════════════════╣
-║  • Build sequences of same suit in descending order (K to A).    ║
-║  • Completed sequences (K-A) are automatically removed.          ║
-║  • You can move a group of cards if they form a same-suit        ║
+║  • Build sequences of same suit in descending order (K to A).     ║
+║  • Completed sequences (K-A) are automatically removed.           ║
+║  • You can move a group of cards if they form a same-suit         ║
 ║    descending sequence.                                           ║
-║  • Empty columns can accept any card or sequence.                ║
-║  • Deal new row when no moves are possible.                      ║
-║  • Game is won when all 8 sequences are removed.                 ║
+║  • Empty columns can accept any card or sequence.                 ║
+║  • Deal new row when no moves are possible.                       ║
+║  • Game is won when all 8 sequences are removed.                  ║
 ╚═══════════════════════════════════════════════════════════════════╝
 )";
     std::cout << "Press Enter to continue...";
