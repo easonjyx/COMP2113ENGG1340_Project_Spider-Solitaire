@@ -1,7 +1,24 @@
 #include "GameController.h"
 #include "Print_introduction.h"
 #include <iostream>
+#include <limits>
 #include "SaveLoad.h"
+
+namespace {
+void discardLine() {
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+bool readInt(int& out) {
+    if (std::cin >> out) {
+        discardLine();
+        return true;
+    }
+    std::cin.clear();
+    discardLine();
+    return false;
+}
+}  // namespace
 
 void printRules() {
     std::cout << R"(
@@ -32,8 +49,10 @@ int main() {
         std::cout << "4. Exit\n";
         std::cout << "Choice: ";
         int choice;
-        std::cin >> choice;
-        std::cin.ignore();
+        if (!readInt(choice)) {
+            std::cout << "Invalid choice. Please enter 1, 2, 3, or 4.\n";
+            continue;
+        }
 
         if (choice == 1) {
             std::cout << "Select difficulty:\n";
@@ -42,8 +61,10 @@ int main() {
             std::cout << "3. 4 Suits (Hard)\n";
             std::cout << "Enter number: ";
             int diff;
-            std::cin >> diff;
-            std::cin.ignore();
+            if (!readInt(diff)) {
+                std::cout << "Invalid difficulty. Returning to main menu.\n";
+                continue;
+            }
             int suits = (diff == 2) ? 2 : (diff == 3) ? 4 : 1;
             runGame(suits);
         } else if (choice == 2) {
