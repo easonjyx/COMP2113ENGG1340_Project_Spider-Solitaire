@@ -30,6 +30,8 @@ bool isValidMove(int initcol, int tarcol, int num){
     if (!operation_cards[initcol][initLast].up) return false;
 	
     int tarLast = GetLastIndex(tarcol);
+    if (tarLast + num > 103) return false;
+
     if (tarLast == -1) return true;
 
     const card& tarCard = operation_cards[tarcol][tarLast];

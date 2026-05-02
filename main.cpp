@@ -62,7 +62,7 @@ int main() {
             std::cout << "Thanks for playing!\n";
             break;
         } else {
-            std::cout << "Invalid choice. Please enter 1, 2, or 3.\n";
+            std::cout << "Invalid choice. Please enter 1, 2, 3, or 4.\n";
         }
     }
     return 0;
