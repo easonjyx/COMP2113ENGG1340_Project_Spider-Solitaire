@@ -73,6 +73,10 @@ static void showHelp() {
     std::cout << "l <f>       : Load game from file\n";
     std::cout << "move        : Type three numbers: <n> <src> <dst> (e.g., 3 5 2)\n";
     std::cout << "=============================\n";
+
+	std::cout << "\nPress ENTER to continue...";
+    std::string dummy;
+    std::getline(std::cin, dummy);
 }
 
 void runGame(int difficultySuits, bool isLoaded) {
