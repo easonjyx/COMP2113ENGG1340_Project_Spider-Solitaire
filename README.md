@@ -1,4 +1,4 @@
-# COMP2113ENGG1340_Project_Spider-Solitaire
+# COMP2113ENGG1340_Project_Group84
 
 # Spider Solitaire
 
