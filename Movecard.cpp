@@ -4,8 +4,12 @@
 #include <iostream>
 using namespace std;
 
+
+
 // Global card table: 10 columns, 104 cards max
 extern card operation_cards[10][104];
+
+
 
 // Move cards from one column to another
 bool Movecard(int initcol, int tarcol, int num) {
