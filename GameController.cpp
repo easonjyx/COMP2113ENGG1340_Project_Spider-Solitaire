@@ -193,9 +193,8 @@ void runGame(int difficultySuits, bool isLoaded) {
                 } else {
                     save(history);
                     if (Movecard(src, dst, n)) {
+			save(history);
                         checkAndRemoveCompleteSequences();
-                    } else {
-                        undo(history);
                     }
                 }
             } else {
