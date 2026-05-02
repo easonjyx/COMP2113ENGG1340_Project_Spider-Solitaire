@@ -18,28 +18,28 @@ void printIntroduction() {
     )" << std::endl;
     std::cout << R"(
 ╔═══════════════════════════════════════════════════════════════════╗
-║                🕷️  SPIDER SOLITAIRE - INTRODUCTION  🕷️              ║
+║                🕷️  SPIDER SOLITAIRE - INTRODUCTION  🕷️           ║
 ╠═══════════════════════════════════════════════════════════════════╣
 ║                                                                   ║
-║  🎯 OBJECTIVE:                                                     ║
+║   * OBJECTIVE:                                                    ║
 ║     Arrange all cards into 8 complete sequences from King down    ║
 ║     to Ace. Each sequence must be of the same suit.               ║
 ║                                                                   ║
-║  ⌨️  COMMANDS:                                                     ║
+║   > COMMANDS:                                                     ║
 ║     • h             - Show help                                   ║
 ║     • q             - Quit game                                   ║
 ║     • u             - Undo last move                              ║
 ║     • r             - Restart game                                ║
 ║     • m             - Change mode (same-suit / any-suit)          ║
 ║     • d             - Deal next row                               ║
-║     • <n> <s> <d>  - Move top <n> cards from col <s> to <d>      ║
+║     • <n> <s> <d>  - Move top <n> cards from col <s> to <d>       ║
 ║                                                                   ║
-║  📝 NOTES:                                                         ║
+║   - NOTES:                                                        ║
 ║     • Columns are numbered 1 to 10.                               ║
 ║     • Empty columns can accept any card or sequence.              ║
 ║     • Completed King-to-Ace sequences are auto-removed.           ║
 ║                                                                   ║
-║  🏆 GOAL: Clear all cards to win!                                  ║
+║   ! GOAL: Clear all cards to win!                                 ║
 ║                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════╝
 )";
