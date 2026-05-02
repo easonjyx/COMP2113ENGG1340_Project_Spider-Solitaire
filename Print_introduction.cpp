@@ -18,7 +18,7 @@ void printIntroduction() {
     )" << std::endl;
     std::cout << R"(
 ╔═══════════════════════════════════════════════════════════════════╗
-║                🕷️  SPIDER SOLITAIRE - INTRODUCTION  🕷️           ║
+║                🕷️  SPIDER SOLITAIRE - INTRODUCTION  🕷️             ║
 ╠═══════════════════════════════════════════════════════════════════╣
 ║                                                                   ║
 ║   * OBJECTIVE:                                                    ║
