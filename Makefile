@@ -11,7 +11,8 @@ OBJS = main.o \
        MoveRule.o \
        GameHistory.o \
        SaveLoad.o \
-       Print_introduction.o
+       Print_introduction.o \
+       gicards.o
 
 # exefile
 $(TARGET): $(OBJS)
