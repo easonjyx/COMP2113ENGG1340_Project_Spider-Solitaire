@@ -1,14 +1,15 @@
 #include "DeckManager.h"
 #include "GameHistory.h"
+#include "MoveRule.h"
 #include <cstdlib>
 #include <ctime>
 #include <cstring>
 #include <algorithm>
 #include <iostream>
 
-int remainingDeck[104];
-int remainingCount = 0;
-int completedSets = 0;
+static int remainingDeck[104];
+static int remainingCount = 0;
+static int completedSets = 0;
 
 
 static void clearBoard() {
@@ -92,12 +93,7 @@ void dealNextRow() {
     //rec* dummyHead = nullptr;
 
     for (int col = 0; col < 10; ++col){
-        int lastIdx = -1;
-        for(int i = 0; i < 104; ++i){
-            if(!operation_cards[col][i].isEmpty())
-                lastIdx = i;
-            else break;
-        }
+        int lastIdx = GetLastIndex(col);
         int newPos=lastIdx + 1;
         int val =remainingDeck[--remainingCount];
         operation_cards[col][newPos].rank = val >> 4;

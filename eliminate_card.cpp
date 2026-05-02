@@ -1,13 +1,10 @@
 #include "eliminate_card.h"
 #include "cards.h"
 #include "DeckManager.h"
+#include "MoveRule.h"
 
 static int getTopSequenceLength(int col) {
-    int topIdx = -1;
-    for (int i = 0; i < 104; ++i) {
-        if (!operation_cards[col][i].isEmpty()) topIdx = i;
-        else break;
-    }
+    int topIdx = GetLastIndex(col);
     if (topIdx < 0) return 0;
     int len = 1;
     int rank = operation_cards[col][topIdx].rank;
@@ -23,11 +20,7 @@ static int getTopSequenceLength(int col) {
 }
 
 static void flipNextCard(int col) {
-    int topIdx = -1;
-    for (int i = 0; i < 104; ++i) {
-        if (!operation_cards[col][i].isEmpty()) topIdx = i;
-        else break;
-    }
+    int topIdx = GetLastIndex(col);
     if (topIdx >= 0 && !operation_cards[col][topIdx].up)
         operation_cards[col][topIdx].up = true;
 }
@@ -37,8 +30,7 @@ int checkAndRemoveCompleteSequences() {
     for (int col = 0; col < 10; ++col) {
         int len = getTopSequenceLength(col);
         if (len >= 13) {
-            int topIdx = 0;
-            while (topIdx + 1 < 104 && !operation_cards[col][topIdx + 1].isEmpty()) topIdx++;
+            int topIdx = GetLastIndex(col);
             for (int i = 0; i < 13; ++i)
                 operation_cards[col][topIdx - i].setEmpty();
             totalRemoved++;
