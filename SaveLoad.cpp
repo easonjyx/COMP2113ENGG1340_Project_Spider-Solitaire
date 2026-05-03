@@ -18,7 +18,9 @@ struct SaveData {
     int completedSets;
     int difficulty;
 };
-
+// Function: Checks if the given filename is safe and valid for saving/loading
+// Input: name - The filename string to be validated
+// Output: Returns true if filename is safe, false otherwise
 static bool isSafeGameFilename(const std::string& name) {
     if (name.empty() || name.size() > 200) return false;
     if (name.find("..") != std::string::npos) return false;
@@ -45,7 +47,9 @@ static bool isSafeGameFilename(const std::string& name) {
 #endif
     return true;
 }
-
+// Function: Validates if the loaded save data is valid and not corrupted
+// Input: data - The SaveData structure to be checked
+// Output: Returns true if data is valid, false otherwise
 static bool validateSaveData(const SaveData& data) {
     if (data.remainingCount < 0 || data.remainingCount > 104) return false;
     if (data.completedSets < 0 || data.completedSets > 8) return false;
@@ -68,7 +72,9 @@ static bool validateSaveData(const SaveData& data) {
     }
     return true;
 }
-
+// Function: Saves the current game state to a binary file
+// Input: filename - Path/name of the file to save
+// Output: Returns true if save succeeded, false otherwise
 bool saveGame(const char* filename) {
     if (!filename || !isSafeGameFilename(filename)) return false;
     SaveData data;
@@ -82,7 +88,9 @@ bool saveGame(const char* filename) {
     ofs.write(reinterpret_cast<const char*>(&data), sizeof(data));
     return static_cast<bool>(ofs);
 }
-
+// Function: Loads a saved game state from a binary file
+// Input: filename - Path/name of the file to load
+// Output: Returns true if load succeeded, false otherwise
 bool loadGame(const char* filename) {
     if (!filename || !isSafeGameFilename(filename)) return false;
     std::ifstream ifs(filename, std::ios::binary);
