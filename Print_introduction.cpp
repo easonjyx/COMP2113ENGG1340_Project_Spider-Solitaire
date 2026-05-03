@@ -2,6 +2,9 @@
 #include <string>
 #include "Print_introduction.h"
 
+// Function: Displays the game title, rules, and control instructions, and waits for the user to enter "yes" to start the game
+// Input: None
+// Output: Prints game logo, rules, commands and user prompt to the console
 void printIntroduction() {
     std::cout << R"(
  ██████  ██████  ██ ██████  ███████ ██████  
