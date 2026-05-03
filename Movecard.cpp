@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-// Global card table: 10 columns, 104 cards max
+// Global card table
 extern card operation_cards[10][104];
 
 
