@@ -39,7 +39,7 @@ int checkAndRemoveCompleteSequences() {
         if (len >= 13 && topIdx >= 12) {
 	    card firstCard = operation_cards[col][topIdx - 12];
             card lastCard = operation_cards[col][topIdx];
-            if (firstCard.rank == 13 && lastCard.rank == 1) {
+            if (firstCard.rank == 1 && lastCard.rank == 13) {
                 for (int i = 0; i < 13; ++i)
                     operation_cards[col][topIdx - i].setEmpty();
                 totalRemoved++;
