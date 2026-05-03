@@ -2,7 +2,9 @@
 #include "cards.h"
 #include "DeckManager.h"
 #include "MoveRule.h"
-
+// Function: Gets the length of consecutive same-suit descending sequence at the top of a column
+// Input: col - The column index to check
+// Output: Length of the valid descending sequence at the column top
 static int getTopSequenceLength(int col) {
     int topIdx = GetLastIndex(col);
     if (topIdx < 0) return 0;
@@ -18,13 +20,17 @@ static int getTopSequenceLength(int col) {
     }
     return len;
 }
-
+// Function: Flips the top card of a column to face-up if it exists and is face-down
+// Input: col - The column index to flip the card
+// Output: None
 static void flipNextCard(int col) {
     int topIdx = GetLastIndex(col);
     if (topIdx >= 0 && !operation_cards[col][topIdx].up)
         operation_cards[col][topIdx].up = true;
 }
-
+// Function: Checks all columns for complete K-A sequences and removes them
+// Input: None
+// Output: Total number of complete sequences removed
 int checkAndRemoveCompleteSequences() {
     int totalRemoved = 0;
     for (int col = 0; col < 10; ++col) {
