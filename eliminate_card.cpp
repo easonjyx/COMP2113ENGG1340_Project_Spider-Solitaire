@@ -3,7 +3,7 @@
 #include "DeckManager.h"
 #include "MoveRule.h"
 // Function: Gets the length of consecutive same-suit descending sequence at the top of a column
-// Input: col - The column index to check
+// Input: column
 // Output: Length of the valid descending sequence at the column top
 static int getTopSequenceLength(int col) {
     int topIdx = GetLastIndex(col);
@@ -21,7 +21,7 @@ static int getTopSequenceLength(int col) {
     return len;
 }
 // Function: Flips the top card of a column to face-up if it exists and is face-down
-// Input: col - The column index to flip the card
+// Input: column
 // Output: None
 static void flipNextCard(int col) {
     int topIdx = GetLastIndex(col);
