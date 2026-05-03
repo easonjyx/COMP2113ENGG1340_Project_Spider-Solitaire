@@ -13,7 +13,7 @@ int completedSets = 0;
 
 // Function: Clears all cards on the game board and sets them to empty state
 // Input: None
-// Return: None
+// Output: None
 
 static void clearBoard() {
     for (int i = 0; i < 10; ++i)
@@ -23,7 +23,7 @@ static void clearBoard() {
 
 // Function: Generates a full deck of 104 standard playing cards (2 copies of 52 unique cards)
 // Input: deck - Array to store the generated raw card data
-// Return: None
+// Output: None
 
 static void generateRawDeck(int deck[104]) {
     int idx = 0;
@@ -39,7 +39,7 @@ static void generateRawDeck(int deck[104]) {
 // Function: Adjusts the card deck based on selected difficulty (number of suits)
 // Input: deck - Array of card data to be modified
 //        suits - Number of suits to use for difficulty (1 or 2)
-// Return: None
+// Output: None
 
 static void applyDifficulty(int deck[104], int suits) {
     if (suits == 1) {
@@ -74,7 +74,7 @@ static void shuffleDeck(int deck[104]) {
 }
 // Function: Shuffles the card deck randomly using current time as seed
 // Input: deck - Array of card data to be shuffled
-// Return: None
+// Output: None
 void initNewGame(int difficultySuits) {
     clearBoard();
     
@@ -102,7 +102,7 @@ void initNewGame(int difficultySuits) {
 
 // Function: Deals one new card to each column from the remaining deck
 // Input: None
-// Return: None
+// Output: None
 
 void dealNextRow() {
     if (remainingCount < 10) {
@@ -123,28 +123,28 @@ void dealNextRow() {
 
 // Function: Gets the number of remaining cards in the deck
 // Input: None
-// Return: The count of remaining undealt cards
+// Output: The count of remaining undealt cards
 int getRemainingCardCount(){
     return remainingCount;
 }
 
 // Function: Gets the number of completed card sets in the game
 // Input: None
-// Return: The total number of completed sets
+// Output: The total number of completed sets
 int getCompletedSets(){
     return completedSets;
 }
 
 // Function: Resets game state variables for a fresh start
 // Input: None
-// Return: None
+// Output: None
 void resetGame(){
     completedSets = 0;
     remainingCount = 0;
 }
 // Function: Increases the count of completed card sets
 // Input: delta - Value to add to completed sets count
-// Return: None
+// Output: None
 void incrementCompletedSets(int delta) {
     completedSets += delta;
 }
