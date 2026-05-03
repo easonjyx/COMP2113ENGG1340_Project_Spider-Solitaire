@@ -4,11 +4,17 @@
 #include <limits>
 #include "SaveLoad.h"
 
+// Function: Clears the remaining input buffer to avoid reading errors
+// Input: None
+// Output: None
 namespace {
 void discardLine() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
+// Function: Reads an integer from input safely and handles invalid input
+// Input: out - Reference to store the successfully read integer
+// Output: Returns true if integer is read successfully, false otherwise
 bool readInt(int& out) {
     if (std::cin >> out) {
         discardLine();
@@ -20,6 +26,9 @@ bool readInt(int& out) {
 }
 }  // namespace
 
+// Function: Displays the game rules to the console
+// Input: None
+// Output: Prints game rules and waits for user to press Enter
 void printRules() {
     std::cout << R"(
 ╔═══════════════════════════════════════════════════════════════════╗
@@ -38,6 +47,9 @@ void printRules() {
     std::cin.get();
 }
 
+// Function: Main entry point of the program, handles main menu and game flow
+// Input: None
+// Output: Returns 0 when program exits successfully
 int main() {
     printIntroduction();
 
