@@ -8,14 +8,15 @@
 static int getTopSequenceLength(int col) {
     int topIdx = GetLastIndex(col);
     if (topIdx < 0) return 0;
+    if (!operation_cards[col][topIdx].up) return 0;
     int len = 1;
     int rank = operation_cards[col][topIdx].rank;
     int suit = operation_cards[col][topIdx].suit;
     for (int i = topIdx - 1; i >= 0; --i) {
-        if (operation_cards[col][i].isEmpty()) break;
-        if (operation_cards[col][i].rank == rank - 1 && operation_cards[col][i].suit == suit) {
+        if (operation_cards[col][i].isEmpty() || !operation_cards[col][i].up) break;
+        if (operation_cards[col][i].rank == rank + 1 && operation_cards[col][i].suit == suit) {
             len++;
-            rank--;
+            rank++;
         } else break;
     }
     return len;
@@ -39,7 +40,7 @@ int checkAndRemoveCompleteSequences() {
         if (len >= 13 && topIdx >= 12) {
 	    card firstCard = operation_cards[col][topIdx - 12];
             card lastCard = operation_cards[col][topIdx];
-            if (firstCard.rank == 1 && lastCard.rank == 13) {
+            if (firstCard.rank == 13 && lastCard.rank == 1) {
                 for (int i = 0; i < 13; ++i)
                     operation_cards[col][topIdx - i].setEmpty();
                 totalRemoved++;
