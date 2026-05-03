@@ -12,6 +12,9 @@ card operation_cards[10][104];
 bool g_sameSuitOnly = true;
 int g_currentDifficulty;
 
+// Function: Converts a card object to a human-readable string
+// Input: c - The card object to be converted
+// Output: Formatted string representing the card (e.g. [A♠], [5♥])
 static std::string cardToString(const card& c) {
     if (!c.up) return "[??]";
     const char* suitStr;
@@ -32,7 +35,9 @@ static std::string cardToString(const card& c) {
     return "[" + rankStr + suitStr + "]";
 }
 
-//show game board
+// Function: Displays the current game board layout and game status
+// Input: None
+// Output: None
 static void displayBoard() {
     std::cout << "\n";
     for (int col = 0; col < 10; ++col)
@@ -61,6 +66,9 @@ static void displayBoard() {
               << "  |  Mode: " << (g_sameSuitOnly ? "Same-suit" : "Any-suit") << "\n";
 }
 
+// Function: Shows the help menu with all available game commands
+// Input: None
+// Output: None
 static void showHelp() {
     std::cout << "\n=== SPIDER SOLITAIRE HELP ===\n";
     std::cout << "h           : Show this help\n";
@@ -75,6 +83,10 @@ static void showHelp() {
     std::cout << "=============================\n";
 }
 
+// Function: Main game loop that handles input, logic, and game flow
+// Input: difficultySuits - Number of suits for the current game difficulty
+//        isLoaded - Flag indicating if the game is loaded from a save file
+// Output: None
 void runGame(int difficultySuits, bool isLoaded) {
     g_currentDifficulty = difficultySuits;
     rec* history = nullptr;
