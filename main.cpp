@@ -13,7 +13,7 @@ void discardLine() {
 }
 
 // Function: Reads an integer from input safely and handles invalid input
-// Input: out - Reference to store the successfully read integer
+// Input: out 
 // Output: Returns true if integer is read successfully, false otherwise
 bool readInt(int& out) {
     if (std::cin >> out) {
