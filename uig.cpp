@@ -38,7 +38,9 @@ int selectedCardIndex = 0;
 int numSuits = 1; // 难度选择：1, 2, 4
 
 // ================= 跨平台 UI 工具函数 =================
-
+// Function: Clears the console screen
+// Input: None
+// Output: None
 void clearScreen() {
 #ifdef _WIN32
     system("cls");
@@ -46,7 +48,9 @@ void clearScreen() {
     system("clear");
 #endif
 }
-
+// Function: Moves the console cursor to the specified (x,y) position
+// Input: x - horizontal coordinate, y - vertical coordinate
+// Output: None
 void gotoxy(int x, int y) {
 #ifdef _WIN32
     COORD coord;
@@ -57,7 +61,9 @@ void gotoxy(int x, int y) {
     cout << "\033[" << (y+1) << ";" << (x+1) << "H";
 #endif
 }
-
+// Function: Sets the console text color
+// Input: color - color code to set
+// Output: None
 void setColor(int color) {
 #ifdef _WIN32
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
@@ -74,6 +80,9 @@ void setColor(int color) {
 }
 
 #ifndef _WIN32
+// Function: Reads a single character from input without echoing (for Linux/macOS)
+// Input: None
+// Output: The ASCII value of the pressed key
 int _getch() {
     struct termios oldt, newt;
     int ch;
@@ -88,6 +97,9 @@ int _getch() {
 #endif
 
 // ================= 逻辑与渲染 =================
+// Function: Converts a Card object to a displayable string
+// Input: c - the card to convert, isSelected - whether the card is selected
+// Output: Formatted string representing the card
 string cardToString(const Card& c, bool isSelected = false) {
     string colorCode = "\033[0m";
     string resetCode = "\033[0m";
@@ -118,7 +130,9 @@ string cardToString(const Card& c, bool isSelected = false) {
     return selectMark + colorCode + "[" + rankStr + suitStr + "]" + resetCode + (isSelected ? "<" : " ");
 }
 
-
+// Function: Initializes the game deck, shuffles cards, and sets up the table
+// Input: None
+// Output: None
 void initTable() {
     piles.clear();
     
@@ -166,7 +180,9 @@ void initTable() {
         piles.push_back(p);
     }
 }
-
+// Function: Draws the entire game board, cards, and UI on the console
+// Input: None
+// Output: None
 void drawTable() {
     clearScreen();
     setColor(7);
@@ -198,7 +214,9 @@ void drawTable() {
 }
 
 // ================= 菜单系统 =================
-
+// Function: Displays difficulty menu and returns user's choice
+// Input: None
+// Output: Selected difficulty (1, 2, or 4)
 int showDifficultyMenu() {
     vector<string> options = {"1 Suit (Easy)", "2 Suits (Medium)", "4 Suits (Hard)"};
     vector<int> vals = {1, 2, 4};
@@ -218,7 +236,9 @@ int showDifficultyMenu() {
         } else if (key == 13 || key == 10) return vals[selected];
     }
 }
-
+// Function: Displays main menu and returns user's selection
+// Input: None
+// Output: Menu option index (0: New Game, 1: Rules, 2: Exit)
 int showMainMenu() {
     vector<string> options = {"NEW GAME", "RULES", "EXIT"};
     int selected = 0;
@@ -237,7 +257,9 @@ int showMainMenu() {
         } else if (key == 13 || key == 10) return selected;
     }
 }
-
+// Function: Displays game rules and waits for user input
+// Input: None
+// Output: None
 void showRulesScreen() {
     clearScreen();
     cout << "RULES:\n1. Build sequences in descending order (K to A).\n2. Only same-suit full sequences are removed.\n3. Move groups of same-suit sequences.\n\nPress any key to return...";
@@ -245,7 +267,9 @@ void showRulesScreen() {
 }
 
 // ================= 主循环 =================
-
+// Function: Main game loop handling input, selection, and game flow
+// Input: None
+// Output: None
 void gameLoop() {
     selectedPile = 1;
     selectedCardIndex = (int)piles[selectedPile].cards.size() - 1;
@@ -281,7 +305,9 @@ void gameLoop() {
         }
     }
 }
-
+// Function: Program entry point, initializes random seed and runs menu system
+// Input: None
+// Output: 0 on successful exit
 int main() {
     srand(time(0));
     while (true) {
