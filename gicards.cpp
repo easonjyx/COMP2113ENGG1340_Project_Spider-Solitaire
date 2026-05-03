@@ -4,6 +4,9 @@
 #include <ctime>
 #include <algorithm>
 
+// Function: Generates a full deck of 104 cards (2 standard decks) for Spider Solitaire
+// Input: deck - Array to store the generated card data
+// Output: None
 // 生成一副完整的蜘蛛纸牌（104张：2副标准牌）
 static void generateRawDeck(int deck[104]) {
     int idx = 0;
@@ -15,7 +18,9 @@ static void generateRawDeck(int deck[104]) {
         }
     }
 }
-
+// Function: Shuffles the card deck randomly using the current time as seed
+// Input: deck - Array of card data to be shuffled
+// Output: None
 // 洗牌
 static void shuffleDeck(int deck[104]) {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
@@ -25,6 +30,9 @@ static void shuffleDeck(int deck[104]) {
     }
 }
 
+// Function: Initializes the full game board with shuffled initial cards
+// Input: None
+// Output: Returns the first card of the initialized board for reference
 // 初始化游戏牌组
 card gicards() {
     card initialcards[10][104];
