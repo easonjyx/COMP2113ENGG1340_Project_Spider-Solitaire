@@ -16,7 +16,7 @@ int g_currentDifficulty;
 // Input: c - The card object to be converted
 // Output: Formatted string representing the card (e.g. [A♠], [5♥])
 static std::string cardToString(const card& c) {
-    if (!c.up) return "[??]";
+    if (!c.up) return "[??] ";
     const char* suitStr;
     switch (c.suit) {
         case 1: suitStr = "♠"; break;
@@ -32,7 +32,10 @@ static std::string cardToString(const card& c) {
     else if (r == 12) rankStr = "Q";
     else if (r == 13) rankStr = "K";
     else rankStr = std::to_string(r);
-    return "[" + rankStr + suitStr + "]";
+    if (rankStr == "10")
+	    return "[" + rankStr + suitStr + "]";
+    else 
+	    return "[" + rankStr + suitStr + "] ";
 }
 
 // Function: Displays the current game board layout and game status
@@ -40,8 +43,13 @@ static std::string cardToString(const card& c) {
 // Output: Prints game board to the console
 static void displayBoard() {
     std::cout << "\n";
-    for (int col = 0; col < 10; ++col)
-        std::cout << "   " << col + 1 << " ";
+    for (int col = 0; col < 10; ++col){
+	    if (col + 1 == 10) {
+		    std::cout << "  10";
+	    }
+	    else
+        	std::cout << "   " << col + 1 << "  ";
+    }
     std::cout << "\n";
 
     int maxHeight = 0;
