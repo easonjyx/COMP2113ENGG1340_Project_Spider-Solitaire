@@ -18,8 +18,8 @@ struct SaveData {
     int completedSets;
     int difficulty;
 };
-// Function: Checks if the given filename is safe and valid for saving/loading
-// Input: name - The filename string to be validated
+// Function: Checks if the given filename is safe 
+// Input: name 
 // Output: Returns true if filename is safe, false otherwise
 static bool isSafeGameFilename(const std::string& name) {
     if (name.empty() || name.size() > 200) return false;
@@ -48,7 +48,7 @@ static bool isSafeGameFilename(const std::string& name) {
     return true;
 }
 // Function: Validates if the loaded save data is valid and not corrupted
-// Input: data - The SaveData structure to be checked
+// Input: data 
 // Output: Returns true if data is valid, false otherwise
 static bool validateSaveData(const SaveData& data) {
     if (data.remainingCount < 0 || data.remainingCount > 104) return false;
@@ -73,7 +73,7 @@ static bool validateSaveData(const SaveData& data) {
     return true;
 }
 // Function: Saves the current game state to a binary file
-// Input: filename - Path/name of the file to save
+// Input: filename
 // Output: Returns true if save succeeded, false otherwise
 bool saveGame(const char* filename) {
     if (!filename || !isSafeGameFilename(filename)) return false;
@@ -89,7 +89,7 @@ bool saveGame(const char* filename) {
     return static_cast<bool>(ofs);
 }
 // Function: Loads a saved game state from a binary file
-// Input: filename - Path/name of the file to load
+// Input: filename 
 // Output: Returns true if load succeeded, false otherwise
 bool loadGame(const char* filename) {
     if (!filename || !isSafeGameFilename(filename)) return false;
