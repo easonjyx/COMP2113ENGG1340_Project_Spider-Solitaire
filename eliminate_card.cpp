@@ -35,13 +35,17 @@ int checkAndRemoveCompleteSequences() {
     int totalRemoved = 0;
     for (int col = 0; col < 10; ++col) {
         int len = getTopSequenceLength(col);
-        if (len >= 13) {
-            int topIdx = GetLastIndex(col);
-            for (int i = 0; i < 13; ++i)
-                operation_cards[col][topIdx - i].setEmpty();
-            totalRemoved++;
-            incrementCompletedSets(1);
-            flipNextCard(col);
+	int topIdx = GetLastIndex(col);
+        if (len >= 13 && topIdx >= 12) {
+	    card firstCard = operation_cards[col][topIdx - 12];
+            card lastCard = operation_cards[col][topIdx];
+            if (firstCard.rank == 13 && lastCard.rank == 1) {
+                for (int i = 0; i < 13; ++i)
+                    operation_cards[col][topIdx - i].setEmpty();
+                totalRemoved++;
+                incrementCompletedSets(1);
+                flipNextCard(col);
+	    }
         }
     }
     return totalRemoved;
