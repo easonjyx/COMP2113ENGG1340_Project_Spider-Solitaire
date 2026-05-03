@@ -49,17 +49,15 @@ static void applyDifficulty(int deck[104], int suits) {
         }
     } else if (suits == 2) {
         int newDeck[104];
-        int idx = 0;
-
-        for (int suit = 1; suit <= 2; ++suit) {
-            for (int rank = 1; rank <= 13; ++rank) {
-                newDeck[idx++] = (rank << 4) | suit;
+        int newIdx = 0;
+        for (int i = 0; i < 104; ++i) {
+            int suit = deck[i] & 0xF;
+            if (suit == 1 || suit == 2) {
+                newDeck[newIdx++] = deck[i];
             }
         }
-        for (int suit = 1; suit <= 2; ++suit) {
-            for (int rank = 1; rank <= 13; ++rank) {
-                newDeck[idx++] = (rank << 4) | suit;
-            }
+        for (int i = 0; newIdx < 104; ++i) {
+            newDeck[newIdx++] = newDeck[i % newIdx];
         }
         memcpy(deck, newDeck, 104 * sizeof(int));
     }
