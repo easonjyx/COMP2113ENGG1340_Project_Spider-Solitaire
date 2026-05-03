@@ -11,7 +11,7 @@ int remainingDeck[104];
 int remainingCount = 0;
 int completedSets = 0;
 
-// Function: Clears all cards on the game board and sets them to empty state
+// Function: Clears all cards on the game board and sets them to empty 
 // Input: None
 // Output: None
 
@@ -21,8 +21,8 @@ static void clearBoard() {
             operation_cards[i][j].setEmpty();
 }
 
-// Function: Generates a full deck of 104 standard playing cards (2 copies of 52 unique cards)
-// Input: deck - Array to store the generated raw card data
+// Function: Generates a full deck of 104 standard  cards (2 copies of 52 unique cards)
+// Input: store raw card data
 // Output: None
 
 static void generateRawDeck(int deck[104]) {
@@ -36,9 +36,9 @@ static void generateRawDeck(int deck[104]) {
     }
 }
 
-// Function: Adjusts the card deck based on selected difficulty (number of suits)
-// Input: deck - Array of card data to be modified
-//        suits - Number of suits to use for difficulty (1 or 2)
+// Function: adjust the deck based on difficulty
+// Input: deck 
+//        suits
 // Output: None
 
 static void applyDifficulty(int deck[104], int suits) {
@@ -72,8 +72,8 @@ static void shuffleDeck(int deck[104]) {
         std::swap(deck[i], deck[j]);
     }
 }
-// Function: Shuffles the card deck randomly using current time as seed
-// Input: deck - Array of card data to be shuffled
+// Function: Shuffles the card deck randomly 
+// Input: deck 
 // Output: None
 void initNewGame(int difficultySuits) {
     clearBoard();
@@ -135,7 +135,7 @@ int getCompletedSets(){
     return completedSets;
 }
 
-// Function: Resets game state variables for a fresh start
+// Function: Resets game for a new game
 // Input: None
 // Output: None
 void resetGame(){
@@ -143,7 +143,7 @@ void resetGame(){
     remainingCount = 0;
 }
 // Function: Increases the count of completed card sets
-// Input: delta - Value to add to completed sets count
+// Input: delta 
 // Output: None
 void incrementCompletedSets(int delta) {
     completedSets += delta;
