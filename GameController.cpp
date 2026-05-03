@@ -37,7 +37,7 @@ static std::string cardToString(const card& c) {
 
 // Function: Displays the current game board layout and game status
 // Input: None
-// Output: None
+// Output: Prints game board to the console
 static void displayBoard() {
     std::cout << "\n";
     for (int col = 0; col < 10; ++col)
@@ -68,7 +68,7 @@ static void displayBoard() {
 
 // Function: Shows the help menu with all available game commands
 // Input: None
-// Output: None
+// Output: Prints help information to the console
 static void showHelp() {
     std::cout << "\n=== SPIDER SOLITAIRE HELP ===\n";
     std::cout << "h           : Show this help\n";
