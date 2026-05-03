@@ -61,6 +61,8 @@ static void applyDifficulty(int deck[104], int suits) {
         }
         memcpy(deck, newDeck, 104 * sizeof(int));
     }
+    else if (suits == 4) {
+    }
 }
 
 static void shuffleDeck(int deck[104]) {
